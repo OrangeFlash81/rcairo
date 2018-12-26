@@ -719,6 +719,14 @@ cr_line_to (VALUE self, VALUE x, VALUE y)
 }
 
 static VALUE
+cr_arc_to (VALUE self, VALUE x, VALUE y)
+{
+  cairo_arc_to (_SELF, NUM2DBL (x), NUM2DBL (y));
+  cr_check_status (_SELF);
+  return self;
+}
+
+static VALUE
 cr_curve_to (VALUE self, VALUE x1, VALUE y1,
              VALUE x2, VALUE y2, VALUE x3, VALUE y3)
 {
@@ -1771,6 +1779,7 @@ Init_cairo_context (void)
   rb_define_method (rb_cCairo_Context, "move_to", cr_move_to, 2);
   rb_define_method (rb_cCairo_Context, "new_sub_path", cr_new_sub_path, 0);
   rb_define_method (rb_cCairo_Context, "line_to", cr_line_to, 2);
+  rb_define_method (rb_cCairo_Context, "arc_to", cr_arc_to, 2);
   rb_define_method (rb_cCairo_Context, "curve_to", cr_curve_to_generic, -1);
   rb_define_method (rb_cCairo_Context, "arc", cr_arc, 5);
   rb_define_method (rb_cCairo_Context, "arc_negative", cr_arc_negative, 5);
