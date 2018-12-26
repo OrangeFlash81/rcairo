@@ -5,7 +5,7 @@ module Cairo
     extend Forwardable
     methods = %w(new_path new_sub_path move_to line_to curve_to
                  arc arc_negative rel_move_to rel_line_to rel_curve_to
-                 rectangle rounded_rectangle circle)
+                 rectangle rounded_rectangle circle arc_to)
     def_delegators :@context, *methods
 
     def close
